@@ -1,8 +1,8 @@
-name: Deploy frontend application-9999
+name: Deploy frontend application-prod
 on:
   push:
     branches:
-      - new-work-9999
+      - new-work-prod
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -41,8 +41,8 @@ jobs:
           username: ${{ secrets.HOST_USER_NAME }}
           key: ${{ secrets.HOST_SSH_PRIVATE_KEY }}
           port: 22
-          source: "docker-compose-9999.yml"
-          target: "/home/ubuntu/frontend-9999"
+          source: "docker-compose-prod.yml"
+          target: "/home/ubuntu/frontend-prod"
       -
         name: docker compose
         uses: appleboy/ssh-action@v0.1.10
@@ -54,7 +54,7 @@ jobs:
           script: |
             cd /home/ubuntu/frontend
             echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login --username ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-            docker compose -f docker-compose-9999.yml down
-            docker compose -f docker-compose-9999.yml pull
-            docker compose -f docker-compose-9999.yml up -d
-            rm -rf /home/ubuntu/frontend-9999
+            docker compose -f docker-compose-prod.yml down
+            docker compose -f docker-compose-prod.yml pull
+            docker compose -f docker-compose-prod.yml up -d
+            rm -rf /home/ubuntu/frontend-prod

@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input and Output</title>
-</head>
-<body>
-    <h2>Input and Output</h2>
-    <input type="text" id="textInput" placeholder="Input something">
-    <button onclick="outputText()">output</button>
-    <div id="output"></div>
-</body>
-</html>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Finish 10.2!</h1>
+      <p class="lead">You may add your socore to see how your grade will?</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <form class="form-inline">
+            <div class="form-group mb-2">
+              <label for="staticEmail2" class="sr-only"></label>
+              <input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Enter your score">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputPassword2" class="sr-only">Password</label>
+              <input [(ngModel)]="score" name="score" type="text" class="form-control" id="score" placeholder="Score...">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" (click)="getGrade()">Submit</button>
+          </form>
+    </div>
+    <div *ngIf="showOutput" class="col-md-6">
+      You grade is 
+      <button type="button" [class]=outputClass>{{grade}}</button>
+    </div>
+  </div>
+  
+  
